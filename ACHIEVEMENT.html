@@ -1,0 +1,160 @@
+ <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deni Saputra - Personal Website</title>
+    <!-- Link CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Loader -->
+    <div class="bg-loader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="medsos">
+        <div class="container">
+            <ul>
+                <li><a href="https://web.facebook.com/profile.php?id=100032427531381"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/denysaaries/"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/@denisaputra5849"><i class="fab fa-youtube"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/deni-saputra-522161216/"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1><a href="index.html">Deni Saputra</a></h1>
+            <ul>
+                <li class="active"><a href="index.html">HOME</a></li>
+                <li><a href="BIODATA.html">BIODATA</a></li>
+                <li><a href="ACHIEVEMENT.html">ACHIEVEMENT</a></li>
+                <li><a href="CERTIFICATIONS.html">CERTIFICATIONS</a></li>
+                <li><a href="CONTACTS.html">CONTACTS</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Label -->
+    <section class="label">
+        <div class="container">
+            <p>HOME / ACHIEVEMENT</p>
+        </div>
+    </section>
+
+    <!-- Achievement Section -->
+    <section class="achievement">
+        <div class="container">
+            <h3>ACHIEVEMENT</h3>
+            <div class="achievement-row">
+                <!-- Achievement Card 1 -->
+                <div class="achievement-card">
+                    <div class="icon"><i class="fas fa-medal"></i></div>
+                    <h4>Olimpiade Tingkat SMA</h4>
+                    <p>Mengikuti olimpiade tingkat sekolah di bidang Ekonomi.</p>
+                    <img src="images/achievement-olimpiade.jpg" alt="Olimpiade Ekonomi" class="hidden-image">
+                </div>
+                <!-- Achievement Card 2 -->
+                <div class="achievement-card">
+                    <div class="icon"><i class="fas fa-flag"></i></div>
+                    <h4>Paskibra Pengibaran</h4>
+                    <p>Menjadi anggota paskibra yang bertugas pada upacara peringatan kemerdekaan.</p>
+                    <img src="images/achievement-paskibra.jpg" alt="Paskibra" class="hidden-image">
+                </div>
+                <!-- Achievement Card 3 -->
+                <div class="achievement-card">
+                    <div class="icon"><i class="fas fa-star"></i></div>
+                    <h4>Ketua OSIS</h4>
+                    <p>Memimpin organisasi siswa untuk berbagai kegiatan sekolah selama 1 tahun.</p>
+                    <img src="images/achievement-osis.jpg" alt="Ketua OSIS" class="hidden-image">
+                </div>
+                <!-- Achievement Card 4 -->
+                <div class="achievement-card">
+                    <div class="icon"><i class="fas fa-hard-hat"></i></div>
+                    <h4>Safety Competency K3</h4>
+                    <p>Mendapatkan sertifikasi keselamatan kerja (K3) untuk sektor industri.</p>
+                    <img src="images/achievement-k3.jpg" alt="Safety Competency K3" class="hidden-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <small>Copyright &copy; 2024 - Deni Saputra. All Rights Reserved.</small>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        $(document).ready(function() {
+            // Hide loader on page load
+            $(".bg-loader").hide();
+
+            // Toggle content display (Example for future project/sertifikasi details)
+            $(".toggle-content").hide();
+            $(".toggle-button").click(function() {
+                $(this).next(".toggle-content").slideToggle();
+            });
+
+            // Modal functionality for images in Achievement cards
+            $("body").append(`
+                <div class="modal-overlay">
+                    <div class="modal-content">
+                        <img src="" alt="Achievement Image">
+                    </div>
+                </div>
+            `);
+
+            $(".achievement-card").click(function() {
+                const imgSrc = $(this).find(".hidden-image").attr("src");
+                const imgAlt = $(this).find(".hidden-image").attr("alt");
+                $(".modal-overlay img").attr("src", imgSrc).attr("alt", imgAlt);
+                $(".modal-overlay").fadeIn();
+            });
+
+            $(".modal-overlay").click(function() {
+                $(this).fadeOut();
+            });
+
+            // Smooth scroll for navigation
+            $("header ul li a").click(function(event) {
+                event.preventDefault();
+                const targetSection = $(this).attr("href");
+                if (targetSection.startsWith("#")) {
+                    $("html, body").animate({
+                        scrollTop: $(targetSection).offset().top - 50
+                    }, 1000);
+                } else {
+                    window.location.href = targetSection;
+                }
+            });
+
+            // Hover effect for achievement cards (zoom in effect)
+            $(".achievement-card").hover(
+                function() {
+                    $(this).css("transform", "scale(1.05)").css("transition", "0.3s ease");
+                },
+                function() {
+                    $(this).css("transform", "scale(1)");
+                }
+            );
+        });
+
+        // Hide loader animation after page load
+        $(window).on("load", function() {
+            $(".bg-loader").fadeOut("slow");
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+ <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deni Saputra - Personal Website</title>
+    <!-- Link CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="bg-loader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Social Media Links -->
+    <div class="medsos">
+        <div class="container">
+            <ul>
+                <li><a href="https://web.facebook.com/profile.php?id=100032427531381"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/denysaaries/"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/@denisaputra5849"><i class="fab fa-youtube"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/deni-saputra-522161216/"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+        </div>  
+    </div>
+
+    <!-- Header -->
+    <header>    
+        <div class="container">
+            <h1><a href="index.html">Deni Saputra</a></h1>
+            <ul>
+                <li class="active"><a href="index.html">HOME</a></li>
+                <li><a href="BIODATA.html">BIODATA</a></li>
+                <li><a href="ACHIEVEMENT.html">ACHIEVEMENT</a></li>
+                <li><a href="CERTIFICATIONS.html">CERTIFICATIONS</a></li>
+                <li><a href="CONTACS.html">CONTACTS</a></li>
+            </ul>
+        </div>
+    </header>   
+
+    <!-- Breadcrumbs -->
+    <section class="label">
+        <div class="container">
+            <p>HOME / CERTIFICATIONS</p>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="CERTIFICATIONS">
+        <div class="container">
+            <h3>CERTIFICATIONS</h3>
+            <div class="certification-row">
+                <!-- Certification 1 -->
+                <div class="certification-card">
+                    <div class="text-content">
+                        <h4>SERTIFIKASI KETUA OSIS</h4>
+                        <p>Piagam Penghargaan Ketua OSIS Periode 2019/2020</p>
+                        <button class="view-image" data-img="images/certificate1.jpg">View Image</button>
+                    </div>
+                    <div class="image-content">
+                        <img src="images/certificate1.jpg" alt="Sertifikasi Ketua OSIS" class="certification-image hidden">
+                    </div>
+                </div>
+                <!-- Certification 2 -->
+                <div class="certification-card">
+                    <div class="text-content">
+                        <h4>SERTIFIKASI PESERTA OLIMPIADE BIDANG EKONOMI</h4>
+                        <p>Piagam Penghargaan Olimpiade Sains Nasional Tingkat Kabupaten Bekasi Tahun 2019</p>
+                        <button class="view-image" data-img="images/certificate2.jpg">View Image</button>
+                    </div>
+                    <div class="image-content">
+                        <img src="images/certificate2.jpg" alt="Sertifikasi Olimpiade Ekonomi" class="certification-image hidden">
+                    </div>
+                </div>
+                <!-- Certification 3 -->
+                <div class="certification-card">
+                    <div class="text-content">
+                        <h4>SERTIFIKASI CIPTA BACA PUISI TINGKAT SMA SEPROVINSI</h4>
+                        <p>Sertifikasi dalam memperingati ROAD TO ELANOUR 2019 dianugrahkan Juara 3 Cipta Baca Puisi</p>
+                        <button class="view-image" data-img="images/certificate3.jpg">View Image</button>
+                    </div>
+                    <div class="image-content">
+                        <img src="images/certificate3.jpg" alt="Sertifikasi Baca Puisi" class="certification-image hidden">
+                    </div>
+                </div>
+                <!-- Certification 4 -->
+                <div class="certification-card">
+                    <div class="text-content">
+                        <h4>SERTIFIKASI TARUNA SIAGA BENCANA</h4>
+                        <p>Sertifikasi peserta Taruna Siaga Bencana (TAGANA) Tingkat SMA diselenggarakan oleh Dinas Sosial Kabupaten Bekasi 13 s/d 15 November 2019.</p>
+                        <button class="view-image" data-img="images/certificate4.jpg">View Image</button>
+                    </div>
+                    <div class="image-content">
+                        <img src="images/certificate4.jpg" alt="Sertifikasi TAGANA" class="certification-image hidden">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <small>Copyright &copy; 2024 - Deni Saputra. All Rights Reserved.</small>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        $(document).ready(function() {
+            $(".bg-loader").hide();
+
+            // View Image for certifications
+            $(".view-image").click(function() {
+                const image = $(this).closest(".certification-card").find(".certification-image");
+                if (image.hasClass("hidden")) {
+                    image.removeClass("hidden").fadeIn(); // Show image with animation
+                    $(this).text("Hide Image"); // Change button text
+                } else {
+                    image.fadeOut(function() {
+                        $(this).addClass("hidden"); // Hide image with animation
+                    });
+                    $(this).text("View Image"); // Reset button text
+                }
+            });
+
+            // Smooth Scroll for navigation
+            $("header ul li a").click(function(event) {
+                event.preventDefault(); // Prevent page reload
+                const targetSection = $(this).attr("href");
+                if (targetSection.startsWith("#")) {
+                    $("html, body").animate({
+                        scrollTop: $(targetSection).offset().top - 50
+                    }, 1000);
+                } else {
+                    window.location.href = targetSection; // Navigate to file
+                }
+            });
+
+            // Modal for Achievement Images
+            $("body").append(`
+                <div class="modal-overlay">
+                    <div class="modal-content">
+                        <img src="" alt="Achievement Image">
+                    </div>
+                </div>
+            `);
+
+            $(".achievement-card").click(function() {
+                const imgSrc = $(this).find(".hidden-image").attr("src");
+                const imgAlt = $(this).find(".hidden-image").attr("alt");
+                $(".modal-overlay img").attr("src", imgSrc).attr("alt", imgAlt);
+                $(".modal-overlay").fadeIn(); // Show modal
+            });
+
+            $(".modal-overlay").click(function() {
+                $(this).fadeOut(); // Hide modal
+            });
+
+            // Loader Animation on Load
+            $(window).on("load", function() {
+                $(".bg-loader").fadeOut("slow");
+            });
+        });
+    </script>
+</body>
+</html>
